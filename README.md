@@ -19,7 +19,7 @@
 
  3. 在插件设置中填写“微信Token”，与微信公众平台中的保持一致。
 
- 4. 登陆微信公众平台（https://mp.weixin.qq.com）后台，在“开发”-》“基本配置”里，修改服务器地址为http(s)://{域名}/wechat，例如下：https://holmesian.org/wechat，令牌填写上一步中的“微信Token”。
+ 4. 登陆微信公众平台（ https://mp.weixin.qq.com ）后台，在“开发”-》“基本配置”里，修改服务器地址为 http( s ):// {域名} /wechat，例如：https://holmesian.org/wechat ，令牌填写上一步中的“微信Token”。
 
  5. 启用服务器配置
 
