@@ -293,10 +293,24 @@ class WeChatHelper_Action extends Typecho_Widget implements Widget_Interface_Do
                 //$preg = "/<img\ssrc=(\'|\")(.*?)\.(jpg|png)(\'|\")/is";
                 $preg = "/\[.*?\]:\s*(http(s)?:\/\/.*?(jpg|png))/i"; //For markdown first pic.
 				preg_match_all( $preg, $val['text'], $matches );
-				if(isset($matches) && $matches[1][0] != null){
+				if(isset($matches) && isset($matches[1][0])){
 				 	$tmpPicUrl = $matches[1][0];
 				}else{
-					$tmpPicUrl = $this->_imageDefault;
+					$preg = '/<img\ssrc=(\'|\")(.*?)\.(jpg|png)(\'|\")/is';//default src pic
+					preg_match_all( $preg, $val['text'], $matches );
+					if(isset($matches) && isset($matches[1][0])){
+                                 	        $tmpPicUrl = $matches[1][0];
+                                	}else{
+						$preg = '/\!\[.*?\]\((http(s)?:\/\/.*?(jpg|png))/i';
+						preg_match_all( $preg, $val['text'], $matches );
+						if(isset($matches) && isset($matches[1][0])){
+                                          	      $tmpPicUrl = $matches[1][0];
+                                        	}else{
+							$tmpPicUrl = $this->_imageDefault;
+						}
+					}
+					
+					//$tmpPicUrl = $this->_imageDefault;
 				}
 				$tmpPicUrl = $tmpPicUrl."?imageView2/1/w/300";
                 $resultStr .= sprintf($this->_itemTpl, $val['title'], $content, $tmpPicUrl, $val['permalink']);
