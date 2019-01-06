@@ -203,21 +203,6 @@ class WeChatHelper_Action extends Typecho_Widget implements Widget_Interface_Do
         $resultStr = sprintf($this->_textTpl, $fromUsername, $toUsername, $time, $contentStr);
         return $resultStr;
     }
-    /** 机器人对话 **/
-    private function chatText($postObj, $info){
-        if($info != null){
-           $key = $this->_tulingApi ;
-            $url = "http://www.tuling123.com/openapi/api?key=$key&info=$info";
-            $content = file_get_contents($url);
-            $content = json_decode($content, true);
-            $contentStr = $content['text'];
-        }
-        $fromUsername = $postObj->FromUserName;
-        $toUsername = $postObj->ToUserName;
-        $time = time();
-        $resultStr = sprintf($this->_textTpl, $fromUsername, $toUsername, $time, $contentStr);
-        return $resultStr;
-    }
 
     /** 最新日志 **/
     private function newPost($postObj){
